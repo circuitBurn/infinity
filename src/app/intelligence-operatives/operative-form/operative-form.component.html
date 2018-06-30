@@ -1,0 +1,15 @@
+<h1>Edit Operative Dossier</h1>
+
+<form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
+    <input type="hidden" name="id" [ngModel]="operative?.id">
+    <mat-form-field class="input-full-width">
+        <input matInput placeholder="Name" name="name" [ngModel]="operative?.name" required>
+    </mat-form-field>
+
+    <mat-form-field class="input-full-width">
+        <textarea matInput placeholder="Description" name="description" [ngModel]="operative?.description"></textarea>
+    </mat-form-field>
+
+    <button mat-button type="button" (click)="handleCancel()">Cancel</button>
+    <button mat-button mat-raised-button color="primary" type="submit">SAVE</button>
+</form>

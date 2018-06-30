@@ -1,0 +1,34 @@
+<h1 class="page-header">Intel</h1>
+
+<mat-card class="mb-4">
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+    <mat-card-content *ngIf="!loading">
+        <p>You currently have <em>{{ intel?.value }}</em> points of Intel.</p>
+        <p>
+            Gain more intel by completing missions during your games.
+        </p>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <h3 mat-subheader>Transfer Intel</h3>
+    <mat-card-content>
+        <p>You can transfer Intel to other players to buy back your captured operatives.</p>
+
+        <form class="example-form" (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Select Player" name="playerId" [(ngModel)]="model.playerId" required>
+                    <mat-option *ngFor="let player of players" [value]="player.id">
+                        {{ player.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="input-full-width">
+                <input matInput="number" placeholder="Amount" value="0" name="intelValue" [(ngModel)]="model.value" required>
+            </mat-form-field>
+
+            <button type="submit" mat-button color="primary" [disabled]="form.invalid">TRANSFER</button>
+        </form>
+    </mat-card-content>
+</mat-card>

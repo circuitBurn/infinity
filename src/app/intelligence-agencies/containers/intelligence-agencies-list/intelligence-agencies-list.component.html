@@ -1,0 +1,10 @@
+<mat-card class="mb-4">
+    <mat-list>
+        <h3 mat-subheader>Intelligence Agencies</h3>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+        <mat-list-item class="hoverable" *ngFor="let agency of agencies" [routerLink]="['detail', agency.id]">
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <h4 mat-line>{{agency.name}}</h4>
+        </mat-list-item>
+    </mat-list>
+</mat-card>

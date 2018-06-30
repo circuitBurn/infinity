@@ -1,0 +1,17 @@
+<div *ngIf="!editing">
+    <mat-card class="mb-4">
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+        <h2 class="agency-title">
+            {{ operative?.name }}
+            <span class="spacer"></span>
+            <button mat-button (click)="handleEdit()">Edit</button>
+        </h2>
+        <p class="agency-description">
+            {{ operative?.description }}
+        </p>
+    </mat-card>
+</div>
+<mat-card *ngIf="editing">
+    <operative-form [operative]="operative" (update)="onUpdate($event)" (cancel)="onUpdateCancel()">
+    </operative-form>
+</mat-card>

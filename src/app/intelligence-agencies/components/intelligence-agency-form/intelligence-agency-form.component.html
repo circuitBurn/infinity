@@ -1,0 +1,15 @@
+<h1>Edit Intelligence Agency Dossier</h1>
+
+<form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
+    <input type="hidden" name="id" [ngModel]="agency?.id">
+    <mat-form-field class="input-full-width">
+        <input matInput placeholder="Name" name="name" [ngModel]="agency?.name" required>
+    </mat-form-field>
+
+    <mat-form-field class="input-full-width">
+        <textarea matInput required placeholder="Description" name="description" [ngModel]="agency?.description"></textarea>
+    </mat-form-field>
+
+    <button mat-button type="button" (click)="handleCancel()">Cancel</button>
+    <button mat-button mat-raised-button color="primary" type="submit">SAVE</button>
+</form>

@@ -1,0 +1,29 @@
+<div *ngIf="!editing">
+    <mat-card class="mb-4">
+        <h2 class="agency-title">
+            {{ agency?.name }}
+            <span class="spacer"></span>
+            <button mat-button (click)="handleEdit()">Edit</button>
+        </h2>
+        
+        <p class="agency-description">
+            {{ agency?.description }}
+        </p>
+    </mat-card>
+
+    <mat-card class="mb-4">
+        <mat-list>
+            <h3 mat-subheader>Operatives</h3>
+            <mat-list-item class="hoverable" *ngFor="let operative of agency?.operatives" [routerLink]="['/operative', operative.id]">
+                <mat-icon mat-list-icon>group</mat-icon>
+                <h4 mat-line>{{operative.name}}</h4>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+
+</div>
+
+<mat-card *ngIf="editing">
+    <app-intelligence-agency-form [agency]="agency" (update)="onUpdateAgency($event)" (cancel)="onUpdateAgencyCancel()">
+    </app-intelligence-agency-form>
+</mat-card>

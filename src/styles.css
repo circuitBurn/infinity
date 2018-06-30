@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+.page-header {
+    color: white;
+}
+
+.mat-typography,
+.mat-card-content {
+    font-size: 16px;
+}
+
+/* Portrait and Landscape */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  .mat-typography {
+      font-size: 20px;
+  }
+}
+
+/* Portrait */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+    .mat-typography {
+        font-size: 20px;
+    }
+}
+
+/* Landscape */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
+    .mat-typography {
+        font-size: 20px;
+    }
+}
+
+.mat-toolbar {
+  color: #ff6701;
+  background-color: #222222;
+}
+
+.mat-drawer {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.mat-drawer mat-list-item {
+  background: none;
+  border: 1px solid transparent;
+}
+.mat-drawer mat-list-item:hover {
+  border: 1px solid #ff6701;
+}
+.mat-drawer mat-list-item:hover > .mat-list-item-content {
+  color: #ff6701;
+}
+.mat-drawer .mat-list-item-content {
+  color: white;
+}
+
+.mat-drawer-container {
+  background: linear-gradient(rgba(50, 50, 50, 0.65), rgba(50, 50, 50, 0.65)),
+    url("/images/background_2.jpg");
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.agency-card {
+  max-width: 400px;
+}
+
+.mb-4 {
+  margin-bottom: 8px;
+}
+
+.agency-description {
+  font-size: 15px;
+}
+
+mat-list-item.hoverable:hover {
+  cursor: pointer;
+  background-color: #e2e2e2;
+}
+
+.agency-title {
+  display: flex;
+}
+
+.spacer {
+  flex-grow: 1;
+}
