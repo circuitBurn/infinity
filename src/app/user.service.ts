@@ -6,9 +6,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
+    user;
+
     constructor(
         private http: HttpClient
-    ) {}
+    ) {
+        this.user = window['user'];
+        console.log(this.user);
+    }
+
+    getUser() {
+        return this.user;
+    }
 
     getPlayers() {
         return this.http.get('players');

@@ -52,10 +52,7 @@ body {
   background: none;
   border: 1px solid transparent;
 }
-.mat-drawer mat-list-item:hover {
-  border: 1px solid #ff6701;
-}
-.mat-drawer mat-list-item:hover > .mat-list-item-content {
+.mat-drawer:hover > mat-list-item {
   color: #ff6701;
 }
 .mat-drawer .mat-list-item-content {
@@ -81,7 +78,7 @@ body {
 }
 
 .agency-description {
-  font-size: 15px;
+  white-space: pre-wrap;
 }
 
 mat-list-item.hoverable:hover {

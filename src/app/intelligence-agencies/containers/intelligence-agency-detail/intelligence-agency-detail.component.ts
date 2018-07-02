@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 
 import { IntelligenceAgenciesService } from '../../intelligence-agencies.service';
 import { Agency } from "../../models/intelligence-agency.model";
+import { UserService } from "../../../user.service";
 
 @Component({
   selector: "app-intelligence-agency-detail",
@@ -11,10 +12,13 @@ import { Agency } from "../../models/intelligence-agency.model";
 })
 export class IntelligenceAgencyDetailComponent implements OnInit {
   agency;
+
+  showEdit: boolean = false;
   editing: boolean = false;
 
   constructor(
       private route: ActivatedRoute,
+      private userService: UserService,
       private agencyService: IntelligenceAgenciesService
     ) {}
 
@@ -28,6 +32,7 @@ export class IntelligenceAgencyDetailComponent implements OnInit {
         this.agencyService.getAgency(id).subscribe(
             agency => {
                 this.agency = agency
+                this.showEdit = this.userService.getUser().id == agency['user_id'];
             }
         )
     });

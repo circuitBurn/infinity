@@ -41,7 +41,7 @@ module.exports = "mat-drawer-container {\r\n    height: 100%;\r\n}\r\n\r\nmat-dr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container\" [class.example-is-mobile]=\"mobileQuery.matches\">\n    <mat-toolbar color=\"primary\" class=\"example-toolbar\">\n        <button mat-icon-button (click)=\"snav.toggle()\">\n            <mat-icon>menu</mat-icon>\n        </button>\n        <h1 class=\"example-app-name\">\n            The Kharona Cypher\n        </h1>\n        <span class=\"spacer\"></span>\n        <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n            <mat-icon>more_vert</mat-icon>\n        </button>\n        <mat-menu #menu=\"matMenu\">\n            <button mat-menu-item>\n                <span>Logout</span>\n            </button>\n        </mat-menu>\n    </mat-toolbar>\n\n    <mat-sidenav-container class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 56 : 0\">\n        <mat-sidenav #snav [mode]=\"mobileQuery.matches ? 'over' : 'side'\" opened=\"true\" [fixedInViewport]=\"mobileQuery.matches\" fixedTopGap=\"56\">\n            <mat-nav-list>\n                <a mat-list-item routerLink=\"\">The Kharona Cypher</a>\n                <a mat-list-item routerLink=\"intelligence-agencies\">Intelligence Agencies</a>\n                <a mat-list-item routerLink=\"intel\">Your Intel</a>\n                <a mat-list-item routerLink=\"intel\">Games - Coming Soon</a>\n            </mat-nav-list>\n        </mat-sidenav>\n\n        <mat-sidenav-content>\n            <router-outlet></router-outlet>\n        </mat-sidenav-content>\n    </mat-sidenav-container>\n</div>"
+module.exports = "<div class=\"example-container\" [class.example-is-mobile]=\"mobileQuery.matches\">\n    <mat-toolbar color=\"primary\" class=\"example-toolbar\">\n        <button mat-icon-button (click)=\"snav.toggle()\">\n            <mat-icon>menu</mat-icon>\n        </button>\n        <h1 class=\"example-app-name\">\n            The Kharona Cypher\n        </h1>\n        <span class=\"spacer\"></span>\n        <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n            <mat-icon>more_vert</mat-icon>\n        </button>\n        <mat-menu #menu=\"matMenu\">\n            <a mat-menu-item href=\"/logout\">\n                <span>Logout</span>\n            </a>\n        </mat-menu>\n    </mat-toolbar>\n\n    <mat-sidenav-container class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 56 : 0\">\n        <mat-sidenav #snav [mode]=\"mobileQuery.matches ? 'over' : 'side'\" opened=\"true\" [fixedInViewport]=\"mobileQuery.matches\" fixedTopGap=\"56\">\n            <mat-nav-list>\n                <a mat-list-item routerLink=\"\">The Kharona Cypher</a>\n                <a mat-list-item routerLink=\"intelligence-agencies\">Intelligence Agencies</a>\n                <a mat-list-item routerLink=\"intel\">Your Intel</a>\n                <a mat-list-item routerLink=\"intel\">Games - Coming Soon</a>\n            </mat-nav-list>\n        </mat-sidenav>\n\n        <mat-sidenav-content>\n            <router-outlet></router-outlet>\n        </mat-sidenav-content>\n    </mat-sidenav-container>\n</div>"
 
 /***/ }),
 
@@ -508,7 +508,7 @@ module.exports = ".input-full-width {\r\n    width: 100%;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Edit Intelligence Agency Dossier</h1>\n\n<form (ngSubmit)=\"handleSubmit(form.value, form.valid)\" #form=\"ngForm\" novalidate>\n    <input type=\"hidden\" name=\"id\" [ngModel]=\"agency?.id\">\n    <mat-form-field class=\"input-full-width\">\n        <input matInput placeholder=\"Name\" name=\"name\" [ngModel]=\"agency?.name\" required>\n    </mat-form-field>\n\n    <mat-form-field class=\"input-full-width\">\n        <textarea matInput required placeholder=\"Description\" name=\"description\" [ngModel]=\"agency?.description\"></textarea>\n    </mat-form-field>\n\n    <button mat-button type=\"button\" (click)=\"handleCancel()\">Cancel</button>\n    <button mat-button mat-raised-button color=\"primary\" type=\"submit\">SAVE</button>\n</form>"
+module.exports = "<h1>Edit Intelligence Agency Dossier</h1>\n\n<form (ngSubmit)=\"handleSubmit(form.value, form.valid)\" #form=\"ngForm\" novalidate>\n    <input type=\"hidden\" name=\"id\" [ngModel]=\"agency?.id\">\n    <mat-form-field class=\"input-full-width\">\n        <input matInput placeholder=\"Name\" name=\"name\" [ngModel]=\"agency?.name\" required>\n    </mat-form-field>\n\n    <mat-form-field class=\"input-full-width\">\n        <textarea matInput rows=\"15\" required placeholder=\"Description\" name=\"description\" [ngModel]=\"agency?.description\"></textarea>\n    </mat-form-field>\n\n    <button mat-button type=\"button\" (click)=\"handleCancel()\">Cancel</button>\n    <button mat-button mat-raised-button color=\"primary\" type=\"submit\">SAVE</button>\n</form>"
 
 /***/ }),
 
@@ -554,6 +554,9 @@ var IntelligenceAgencyFormComponent = /** @class */ (function () {
     IntelligenceAgencyFormComponent.prototype.handleCancel = function () {
         this.cancel.emit();
     };
+    IntelligenceAgencyFormComponent.prototype.setFocus = function ($event) {
+        $event.focus();
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
@@ -568,7 +571,7 @@ var IntelligenceAgencyFormComponent = /** @class */ (function () {
     ], IntelligenceAgencyFormComponent.prototype, "cancel", void 0);
     IntelligenceAgencyFormComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-intelligence-agency-form',
+            selector: "app-intelligence-agency-form",
             template: __webpack_require__(/*! ./intelligence-agency-form.component.html */ "./src/app/intelligence-agencies/components/intelligence-agency-form/intelligence-agency-form.component.html"),
             styles: [__webpack_require__(/*! ./intelligence-agency-form.component.css */ "./src/app/intelligence-agencies/components/intelligence-agency-form/intelligence-agency-form.component.css")]
         })
@@ -598,7 +601,7 @@ module.exports = ".agency-card {\r\n    max-width: 500px;\r\n    margin-bottom: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card class=\"mb-4\">\n    <mat-list>\n        <h3 mat-subheader>Intelligence Agencies</h3>\n        <mat-progress-bar mode=\"indeterminate\" *ngIf=\"loading\"></mat-progress-bar>\n        <mat-list-item class=\"hoverable\" *ngFor=\"let agency of agencies\" [routerLink]=\"['detail', agency.id]\">\n            <mat-icon mat-list-icon>folder</mat-icon>\n            <h4 mat-line>{{agency.name}}</h4>\n        </mat-list-item>\n    </mat-list>\n</mat-card>\n"
+module.exports = "<h1 class=\"page-header\">Intelligence Agencies</h1>\n\n<mat-card class=\"mb-4\">\n    <mat-list>\n        <mat-progress-bar mode=\"indeterminate\" *ngIf=\"loading\"></mat-progress-bar>\n        <mat-list-item class=\"hoverable\" *ngFor=\"let agency of agencies\" [routerLink]=\"['detail', agency.id]\">\n            <mat-icon mat-list-icon>folder</mat-icon>\n            <h4 mat-line>{{agency.name}}</h4>\n        </mat-list-item>\n    </mat-list>\n</mat-card>\n "
 
 /***/ }),
 
@@ -691,6 +694,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _intelligence_agencies_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../intelligence-agencies.service */ "./src/app/intelligence-agencies/intelligence-agencies.service.ts");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../user.service */ "./src/app/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -703,10 +707,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var IntelligenceAgencyDetailComponent = /** @class */ (function () {
-    function IntelligenceAgencyDetailComponent(route, agencyService) {
+    function IntelligenceAgencyDetailComponent(route, userService, agencyService) {
         this.route = route;
+        this.userService = userService;
         this.agencyService = agencyService;
+        this.showEdit = false;
         this.editing = false;
     }
     IntelligenceAgencyDetailComponent.prototype.ngOnInit = function () {
@@ -718,6 +725,8 @@ var IntelligenceAgencyDetailComponent = /** @class */ (function () {
             var id = params["id"];
             _this.agencyService.getAgency(id).subscribe(function (agency) {
                 _this.agency = agency;
+                _this.showEdit = _this.userService.getUser().id === agency['user_id'];
+                console.log(agency);
             });
         });
     };
@@ -741,6 +750,7 @@ var IntelligenceAgencyDetailComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./intelligence-agency-detail.component.css */ "./src/app/intelligence-agencies/containers/intelligence-agency-detail/intelligence-agency-detail.component.css")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
             _intelligence_agencies_service__WEBPACK_IMPORTED_MODULE_2__["IntelligenceAgenciesService"]])
     ], IntelligenceAgencyDetailComponent);
     return IntelligenceAgencyDetailComponent;
@@ -1025,7 +1035,7 @@ module.exports = ".input-full-width {\r\n    width: 100%;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Edit Operative Dossier</h1>\n\n<form (ngSubmit)=\"handleSubmit(form.value, form.valid)\" #form=\"ngForm\" novalidate>\n    <input type=\"hidden\" name=\"id\" [ngModel]=\"operative?.id\">\n    <mat-form-field class=\"input-full-width\">\n        <input matInput placeholder=\"Name\" name=\"name\" [ngModel]=\"operative?.name\" required>\n    </mat-form-field>\n\n    <mat-form-field class=\"input-full-width\">\n        <textarea matInput placeholder=\"Description\" name=\"description\" [ngModel]=\"operative?.description\"></textarea>\n    </mat-form-field>\n\n    <button mat-button type=\"button\" (click)=\"handleCancel()\">Cancel</button>\n    <button mat-button mat-raised-button color=\"primary\" type=\"submit\">SAVE</button>\n</form>"
+module.exports = "<h1>Edit Operative Dossier</h1>\n\n<form (ngSubmit)=\"handleSubmit(form.value, form.valid)\" #form=\"ngForm\" novalidate>\n    <input type=\"hidden\" name=\"id\" [ngModel]=\"operative?.id\">\n    <mat-form-field class=\"input-full-width\">\n        <input matInput placeholder=\"Name\" name=\"name\" [ngModel]=\"operative?.name\" required>\n    </mat-form-field>\n\n    <mat-form-field class=\"input-full-width\">\n        <textarea matInput rows=\"15\" placeholder=\"Description\" name=\"description\" [ngModel]=\"operative?.description\"></textarea>\n    </mat-form-field>\n\n    <button mat-button type=\"button\" (click)=\"handleCancel()\">Cancel</button>\n    <button mat-button mat-raised-button color=\"primary\" type=\"submit\">SAVE</button>\n</form>"
 
 /***/ }),
 
@@ -1377,7 +1387,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
+        this.user = window['user'];
+        console.log(this.user);
     }
+    UserService.prototype.getUser = function () {
+        return this.user;
+    };
     UserService.prototype.getPlayers = function () {
         return this.http.get('players');
     };

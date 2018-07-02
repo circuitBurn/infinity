@@ -1,35 +1,34 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Agency } from "../../models/intelligence-agency.model";
 
 export class Operative {
-    name: string
+  name: string;
 }
 
 @Component({
-  selector: 'app-intelligence-agency-form',
-  templateUrl: './intelligence-agency-form.component.html',
-  styleUrls: ['./intelligence-agency-form.component.css']
+  selector: "app-intelligence-agency-form",
+  templateUrl: "./intelligence-agency-form.component.html",
+  styleUrls: ["./intelligence-agency-form.component.css"]
 })
 export class IntelligenceAgencyFormComponent {
+  @Input() agency: Agency;
 
-    @Input()
-    agency: Agency;
+  @Output() update: EventEmitter<Agency> = new EventEmitter<Agency>();
 
-    @Output()
-    update: EventEmitter<Agency> = new EventEmitter<Agency>();
+  @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
 
-    @Output()
-    cancel: EventEmitter<any> = new EventEmitter<any>();
-
-    handleSubmit(agency: Agency, isValid: boolean) {
-        console.log(agency);
-        if (isValid) {
-            this.update.emit(agency);
-        }
+  handleSubmit(agency: Agency, isValid: boolean) {
+    console.log(agency);
+    if (isValid) {
+      this.update.emit(agency);
     }
+  }
 
-    handleCancel() {
-        this.cancel.emit();
-    }
+  handleCancel() {
+    this.cancel.emit();
+  }
 
+  setFocus($event) {
+    $event.focus();
+  }
 }
