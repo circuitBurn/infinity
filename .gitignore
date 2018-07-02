@@ -41,3 +41,4 @@ Thumbs.db
 
 # Build stuff
 server.zip
+server/database/database.sqlite
