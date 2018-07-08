@@ -18,7 +18,6 @@ export class IntelligenceAgencyFormComponent {
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
 
   handleSubmit(agency: Agency, isValid: boolean) {
-    console.log(agency);
     if (isValid) {
       this.update.emit(agency);
     }

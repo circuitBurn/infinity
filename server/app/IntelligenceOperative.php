@@ -8,12 +8,6 @@ class IntelligenceOperative extends Model
 {
     protected $table = "intelligence_operative";
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'agency_id', 'name'
-    ];
+    protected $guarded = [];
+
 }

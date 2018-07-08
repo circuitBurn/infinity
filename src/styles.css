@@ -19,6 +19,10 @@ body {
     font-size: 16px;
 }
 
+mat-card.transparent {
+    background: rgba(255, 255, 255, 0.8);
+}
+
 /* Portrait and Landscape */
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
   .mat-typography {
@@ -60,8 +64,7 @@ body {
 }
 
 .mat-drawer-container {
-  background: linear-gradient(rgba(50, 50, 50, 0.65), rgba(50, 50, 50, 0.65)),
-    url("/images/background_2.jpg");
+  background: linear-gradient(rgba(50, 50, 50, 0.65), rgba(50, 50, 50, 0.65)), url("/images/background_3.jpg");
   background-size: cover;
   background-position: center center;
   height: 100%;
@@ -71,6 +74,10 @@ body {
 
 .agency-card {
   max-width: 400px;
+}
+
+.mt-4 {
+    margin-top: 8px;
 }
 
 .mb-4 {
@@ -93,3 +100,9 @@ mat-list-item.hoverable:hover {
 .spacer {
   flex-grow: 1;
 }
+
+
+.input-full-width {
+    width: 100%;
+  }
+  

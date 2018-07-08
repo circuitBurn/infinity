@@ -1,13 +1,75 @@
 <h1>Edit Operative Dossier</h1>
 
 <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
+
     <input type="hidden" name="id" [ngModel]="operative?.id">
+
+    <!-- TYPE -->
+    <mat-form-field class="form-field-small">
+        <input type="text" matInput placeholder="Type" name="type" [ngModel]="operative?.type" required>
+    </mat-form-field>
+
+    <!-- MOV -->
+    <mat-form-field class="form-field-small">
+        <input type="text" matInput placeholder="MOV" name="mov" [ngModel]="operative?.mov" required>
+    </mat-form-field>
+
+    <!-- CC -->
+    <mat-form-field class="form-field-small">
+        <input type="number" matInput placeholder="CC" name="cc" [ngModel]="operative?.cc" required>
+    </mat-form-field>
+
+    <!-- BS -->
+    <mat-form-field class="form-field-small">
+        <input type="number" matInput placeholder="BS" name="bs" [ngModel]="operative?.bs" required>
+    </mat-form-field>
+
+    <!-- PH -->
+    <mat-form-field class="form-field-small">
+        <input type="number" matInput placeholder="PH" name="ph" [ngModel]="operative?.ph" required>
+    </mat-form-field>
+
+    <!-- WIP -->
+    <mat-form-field class="form-field-small">
+        <input type="number" matInput placeholder="WIP" name="wp" [ngModel]="operative?.wp" required>
+    </mat-form-field>
+
+    <!-- ARM -->
+    <mat-form-field class="form-field-small">
+        <input type="number" matInput placeholder="ARM" name="arm" [ngModel]="operative?.arm" required>
+    </mat-form-field>
+
+    <!-- BTS -->
+    <mat-form-field class="form-field-small">
+        <input type="number" matInput placeholder="BTS" name="bts" [ngModel]="operative?.bts" required>
+    </mat-form-field>
+
+    <!-- W -->
+    <mat-form-field class="form-field-small">
+        <input type="number" matInput placeholder="W" name="w" [ngModel]="operative?.w" required>
+    </mat-form-field>
+
+    <!-- S -->
+    <mat-form-field class="form-field-small">
+        <input type="number" matInput placeholder="S" name="s" [ngModel]="operative?.s" required>
+    </mat-form-field>
+
+    <!-- Equipment -->
+    <mat-form-field class="input-full-width">
+        <input type="text" matInput placeholder="Equipment" name="equipment" [ngModel]="operative?.equipment" required>
+    </mat-form-field>
+
+    <!-- Skills -->
+    <mat-form-field class="input-full-width">
+        <input type="text" matInput placeholder="Skills" name="skills" [ngModel]="operative?.skills" required>
+    </mat-form-field>
+
     <mat-form-field class="input-full-width">
         <input matInput placeholder="Name" name="name" [ngModel]="operative?.name" required>
     </mat-form-field>
 
     <mat-form-field class="input-full-width">
-        <textarea matInput rows="15" placeholder="Description" name="description" [ngModel]="operative?.description"></textarea>
+        <textarea matInput rows="15" placeholder="Description" name="description" [ngModel]="operative?.description" required></textarea>
     </mat-form-field>
 
     <button mat-button type="button" (click)="handleCancel()">Cancel</button>

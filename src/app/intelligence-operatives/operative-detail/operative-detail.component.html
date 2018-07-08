@@ -1,17 +1,95 @@
 <div *ngIf="!editing">
-    <mat-card class="mb-4">
+
+    <mat-card class="mb-4 transparent" *ngIf="operative">
+        <a [routerLink]="['/intelligence-agencies/detail', operative?.agency.id]">{{ operative?.agency.name }}</a>
+    </mat-card>
+
+    <mat-card class="mb-4 transparent">
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-        <h2 class="agency-title">
-            {{ operative?.name }}
+
+        <h2 class="agency-title mb-4">{{ operative?.name }}
             <span class="spacer"></span>
-            <button mat-button (click)="handleEdit()">Edit</button>
+            <button mat-button *ngIf="showEdit" (click)="handleEdit()">Edit</button>
         </h2>
-        <p class="agency-description">
-            {{ operative?.description }}
-        </p>
+        <p class="agency-description">{{operative?.description}}</p>
+
+        <div class="mb-4">
+            <strong>Stats</strong>
+        </div>
+
+        <div class="mt-4">
+
+            <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
+
+                <input type="hidden" name="id" [ngModel]="operative?.id">
+
+                <!-- TYPE -->
+                <mat-form-field class="form-field-small">
+                    <input type="text" matInput placeholder="Type" name="type" [ngModel]="operative?.type" disabled>
+                </mat-form-field>
+
+                <!-- MOV -->
+                <mat-form-field class="form-field-small">
+                    <input type="text" matInput placeholder="MOV" name="mov" [ngModel]="operative?.mov" disabled>
+                </mat-form-field>
+
+                <!-- CC -->
+                <mat-form-field class="form-field-small">
+                    <input type="number" matInput placeholder="CC" name="cc" [ngModel]="operative?.cc" disabled>
+                </mat-form-field>
+
+                <!-- BS -->
+                <mat-form-field class="form-field-small">
+                    <input type="number" matInput placeholder="BS" name="bs" [ngModel]="operative?.bs" disabled>
+                </mat-form-field>
+
+                <!-- PH -->
+                <mat-form-field class="form-field-small">
+                    <input type="number" matInput placeholder="PH" name="ph" [ngModel]="operative?.ph" disabled>
+                </mat-form-field>
+
+                <!-- WIP -->
+                <mat-form-field class="form-field-small">
+                    <input type="number" matInput placeholder="WIP" name="wp" [ngModel]="operative?.wp" disabled>
+                </mat-form-field>
+
+                <!-- ARM -->
+                <mat-form-field class="form-field-small">
+                    <input type="number" matInput placeholder="ARM" name="arm" [ngModel]="operative?.arm" disabled>
+                </mat-form-field>
+
+                <!-- BTS -->
+                <mat-form-field class="form-field-small">
+                    <input type="number" matInput placeholder="BTS" name="bts" [ngModel]="operative?.bts" disabled>
+                </mat-form-field>
+
+                <!-- W -->
+                <mat-form-field class="form-field-small">
+                    <input type="number" matInput placeholder="W" name="w" [ngModel]="operative?.w" disabled>
+                </mat-form-field>
+
+                <!-- S -->
+                <mat-form-field class="form-field-small">
+                    <input type="number" matInput placeholder="S" name="s" [ngModel]="operative?.s" disabled>
+                </mat-form-field>
+
+                <!-- Equipment -->
+                <mat-form-field class="input-full-width">
+                    <input type="text" matInput placeholder="Equipment" name="equipment" [ngModel]="operative?.equipment" disabled>
+                </mat-form-field>
+
+                <!-- Skills -->
+                <mat-form-field class="input-full-width">
+                    <input type="text" matInput placeholder="Skills" name="skills" [ngModel]="operative?.skills" disabled>
+                </mat-form-field>
+
+            </form>
+
+        </div>
+
     </mat-card>
 </div>
-<mat-card *ngIf="editing">
+<mat-card *ngIf="editing" class="transparent">
     <operative-form [operative]="operative" (update)="onUpdate($event)" (cancel)="onUpdateCancel()">
     </operative-form>
 </mat-card>

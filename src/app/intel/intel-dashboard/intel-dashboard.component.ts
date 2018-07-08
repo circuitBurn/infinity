@@ -51,12 +51,11 @@ export class IntelDashboardComponent implements OnInit {
     getMyIntel() {
         return this.intelService.getMyIntel().map(
             response => {
-                console.log(response);
                 this.loading = false;
                 this.intel = response;
             },
             error => {
-                console.log(error);
+
                 this.loading = false;
             }
         )

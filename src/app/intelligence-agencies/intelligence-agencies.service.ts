@@ -20,7 +20,6 @@ export class IntelligenceAgenciesService {
     }
 
     update(agency) {
-        console.log(agency);
         return this.http.post(`agencies/${agency.id}`, agency);
     }
 }

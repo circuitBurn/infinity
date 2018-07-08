@@ -1,0 +1,36 @@
+<mat-card class="transparent">
+    <h1>Edit Profile</h1>
+
+    <!--Profile deets form-->
+    <form (ngSubmit)="handleSubmit(profileForm.value, profileForm.valid)" #profileForm="ngForm" novalidate>
+        <mat-form-field class="input-full-width">
+            <input type="text" matInput placeholder="Name" name="name" [(ngModel)]="user.name" required>
+        </mat-form-field>
+
+        <mat-form-field class="input-full-width">
+                <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="user.email" required>
+        </mat-form-field>
+
+        <button mat-button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">SAVE</button>
+    </form>
+
+    <div class="form-divider"></div>
+
+    <!--Password reset form-->
+    <h1>Reset Password</h1>
+    <form (ngSubmit)="handlePasswordResetSubmit(passwordForm.value, passwordForm.valid)" #passwordForm="ngForm" novalidate>
+        <mat-form-field class="input-full-width">
+            <input type="password" matInput placeholder="New Password" name="password" [(ngModel)]="passwordReset.password" required>
+        </mat-form-field>
+
+        <mat-form-field class="input-full-width">
+            <input type="password" matInput placeholder="New Password (again)" [(ngModel)]="passwordReset.passwordConfirm" name="passwordConfirm" required>
+        </mat-form-field>
+
+        <button mat-button mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">RESET</button>
+    </form>
+
+    <div class="form-divider"></div>
+
+    <a mat-button mat-raised-button routerLink="/">Cancel</a>
+</mat-card>

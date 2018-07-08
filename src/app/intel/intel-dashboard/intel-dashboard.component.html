@@ -1,6 +1,6 @@
 <h1 class="page-header">Intel</h1>
 
-<mat-card class="mb-4">
+<mat-card class="mb-4 transparent">
     <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
     <mat-card-content *ngIf="!loading">
         <p>You currently have <em>{{ intel?.value }}</em> points of Intel.</p>
@@ -10,7 +10,7 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card>
+<mat-card class="transparent">
     <h3 mat-subheader>Transfer Intel</h3>
     <mat-card-content>
         <p>You can transfer Intel to other players to buy back your captured operatives.</p>

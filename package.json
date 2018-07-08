@@ -9,6 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:dev": "ng build && npm run copy",
+    "publish": "ng build --prod && npm run copy",
     "copy": "copyfiles -u 2 ./dist/infinity/*.* ./server/public"
   },
   "private": true,

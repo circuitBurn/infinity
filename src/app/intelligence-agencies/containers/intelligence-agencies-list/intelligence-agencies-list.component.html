@@ -1,6 +1,6 @@
 <h1 class="page-header">Intelligence Agencies</h1>
 
-<mat-card class="mb-4">
+<mat-card class="mb-4 transparent">
     <mat-list>
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
         <mat-list-item class="hoverable" *ngFor="let agency of agencies" [routerLink]="['detail', agency.id]">

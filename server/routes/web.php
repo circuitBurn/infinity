@@ -21,6 +21,9 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('players', 'UserController@players');
 
+    Route::post('user', 'UserController@update');
+    Route::post('password', 'UserController@updatePassword');
+
     // Intel
     Route::get('myintel', 'IntelController@getMyIntel');
     Route::post('/intel/transfer', 'IntelController@transfer');

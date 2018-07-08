@@ -12,7 +12,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { QuillModule } from 'ngx-quill'
+import {MatChipsModule} from '@angular/material/chips';
+
 
 @NgModule({
     imports: [
@@ -31,7 +32,7 @@ import { QuillModule } from 'ngx-quill'
         MatSnackBarModule,
         MatGridListModule,
         MatProgressBarModule,
-        QuillModule
+        MatChipsModule
     ],
     exports: [
         FormsModule,
@@ -49,7 +50,7 @@ import { QuillModule } from 'ngx-quill'
         MatSnackBarModule,
         MatGridListModule,
         MatProgressBarModule,
-        QuillModule
+        MatChipsModule
     ]
 })
 export class SharedModule {}

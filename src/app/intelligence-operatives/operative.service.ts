@@ -15,7 +15,6 @@ export class OperativeService {
     }
 
     update(operative: Operative) {
-        console.log(operative);
-        return this.http.post(`operative/${operative.id}`, operative);
+        return this.http.post(`operatives/${operative.id}`, operative);
     }
 }

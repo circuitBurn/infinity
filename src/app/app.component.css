@@ -18,6 +18,9 @@ mat-sidenav-content {
     padding: 10px;
 }
 
+.mat-toolbar.mat-primary {
+    background: #222222;
+}
 .example-container {
     display: flex;
     flex-direction: column;

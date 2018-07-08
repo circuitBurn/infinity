@@ -18,7 +18,6 @@ export class OperativeFormComponent {
     cancel: EventEmitter<any> = new EventEmitter<any>();
 
     handleSubmit(operative: Operative, isValid: boolean) {
-        console.log(operative);
         if (isValid) {
             this.update.emit(operative);
         }

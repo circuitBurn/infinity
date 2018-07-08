@@ -1,17 +1,14 @@
 <div *ngIf="!editing">
-    <mat-card class="mb-4">
-        <h2 class="agency-title">
-            {{ agency?.name }}
+    <mat-card class="mb-4 transparent">
+        <h2 class="agency-title">{{ agency?.name }}
             <span class="spacer"></span>
-            <button mat-button (click)="handleEdit()">Edit</button>
+            <button mat-button *ngIf="showEdit" (click)="handleEdit()">Edit</button>
         </h2>
         
-        <p class="agency-description">
-            {{ agency?.description }}
-        </p>
+        <p class="agency-description">{{ agency?.description }}</p>
     </mat-card>
 
-    <mat-card class="mb-4">
+    <mat-card class="mb-4 transparent" *ngIf="agency?.operatives.length">
         <mat-list>
             <h3 mat-subheader>Operatives</h3>
             <mat-list-item class="hoverable" *ngFor="let operative of agency?.operatives" [routerLink]="['/operative', operative.id]">
@@ -23,7 +20,7 @@
 
 </div>
 
-<mat-card *ngIf="editing">
+<mat-card *ngIf="editing" class="transparent">
     <app-intelligence-agency-form [agency]="agency" (update)="onUpdateAgency($event)" (cancel)="onUpdateAgencyCancel()">
     </app-intelligence-agency-form>
 </mat-card>
