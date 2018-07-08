@@ -26,7 +26,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Intel
     Route::get('myintel', 'IntelController@getMyIntel');
-    Route::post('/intel/transfer', 'IntelController@transfer');
+    Route::post('intel/transfer', 'IntelController@transfer');
+    Route::get('intel/transactions', 'IntelController@getTransactions');
 
     // Agencies
     Route::get('agencies', 'IntelligenceAgencyController@getAll');

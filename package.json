@@ -8,9 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:dev": "ng build && npm run copy",
-    "publish": "ng build --prod && npm run copy",
-    "copy": "copyfiles -u 2 ./dist/infinity/*.* ./server/public"
+    "dev": "npm run clean && ng build && npm run copy",
+    "publish": "npm run clean && ng build --prod && npm run copy",
+    "copy": "copyfiles -u 2 ./dist/infinity/*.* ./server/public",
+    "clean": "cd server/public && del *.js && del *.map && del index.html && cd ../../"
   },
   "private": true,
   "dependencies": {

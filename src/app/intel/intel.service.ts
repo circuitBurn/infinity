@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Intel } from './models/intel.model';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+import { IntelTransaction } from './models/intel-transaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +18,18 @@ export class IntelService {
       return this.http.get<Intel>(`myintel`);
   }
 
-  transfer(userId, amount) {
-      return this.http.post('intel/transfer', {
-          playerId: userId,
-          amount: amount
-      });
+  transfer(data) {
+      return this.http.post('intel/transfer', data);
+  }
+
+  getTransactions() {
+      return this.http.get<IntelTransaction[]>('intel/transactions').map(
+          transactions => {
+              for (let transaction of transactions) {
+                  transaction.date = new Date(transaction.date['date'] + ' UTC')
+              }
+              return transactions;
+          }
+      )
   }
 }

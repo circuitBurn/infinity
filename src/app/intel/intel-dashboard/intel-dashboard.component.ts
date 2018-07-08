@@ -5,12 +5,10 @@ import { MatSnackBar } from "@angular/material";
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/map';
-import { Intel } from "../models/intel.model";
 
-export class IntelTransfer {
-    playerId: number;
-    value: number;
-}
+import { Intel } from "../models/intel.model";
+import { IntelTransaction } from "../models/intel-transaction.model";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-intel-dashboard",
@@ -22,49 +20,57 @@ export class IntelDashboardComponent implements OnInit {
     loading: boolean = true;
     intel: Intel;
     players;
+
+    transactions: IntelTransaction[];
     
-    model = new IntelTransfer();
+    model; // TODO
 
     constructor(
         private userService: UserService,
         private intelService: IntelService,
         private snackBar: MatSnackBar
-    ) {}
+    ) {
+        this.model = {
+            playerId: null,
+            value: null,
+            message: null
+        };
+    }
 
     ngOnInit() {
+        this.refresh();
+    }
+
+    refresh() {
+        this.model = {
+            playerId: null,
+            value: null,
+            message: null
+        };
         Observable.forkJoin(
-            this.getMyIntel(),
-            this.getPlayers()
+            this.intelService.getMyIntel(),
+            this.userService.getPlayers(),
+            this.intelService.getTransactions()
           ).subscribe(response => {
               this.loading = false;
+              this.intel = response[0];
+              this.players = response[1];
+              this.transactions = response[2];
           });
     }
 
-    getPlayers() {
-        return this.userService.getPlayers().map(
-            players => {
-                this.players = players;
-            }
-        )
-    }
-
-    getMyIntel() {
-        return this.intelService.getMyIntel().map(
-            response => {
-                this.loading = false;
-                this.intel = response;
-            },
-            error => {
-
-                this.loading = false;
-            }
-        )
-    }
-
-    handleSubmit(transfer, isValid: boolean) {
-        this.intelService.transfer(this.model.playerId, this.model.value).subscribe(
+    handleSubmit(form: NgForm, valid: boolean) {
+        console.log(form);
+        const data = {
+            playerId: this.model.playerId,
+            value: this.model.value,
+            message: this.model.message
+        };
+        this.intelService.transfer(data).subscribe(
             response => {
                 this.openSnackBar("Transfer Complete");
+                form.reset();
+                this.refresh();
             },
             error => {
                 if (error.status === 'error') {
@@ -72,7 +78,6 @@ export class IntelDashboardComponent implements OnInit {
                 } else {
                     this.openSnackBar("Could not complete transfer");
                 }
-                
             }
         )
     }

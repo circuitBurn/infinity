@@ -1,0 +1,27 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let transaction of transactions">
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{ transaction.name }}</mat-panel-title>
+            <mat-panel-description [ngSwitch]="transaction.type">
+                <span *ngSwitchCase="'sent'">
+                    -{{ transaction.value }}
+                </span>
+                <span *ngSwitchCase="'received'">
+                    +{{ transaction.value }}
+                </span>
+                <span *ngSwitchCase="'objective'">
+                    +{{ transaction.value }}
+                </span>
+                <span *ngSwitchCase="'bankrupcy'">
+                    +{{ transaction.value }}
+                </span>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+            {{ transaction.message }}
+        </p>
+        <p>
+            {{ transaction.date | date:'medium' }}
+        </p>
+    </mat-expansion-panel>
+</mat-accordion>
