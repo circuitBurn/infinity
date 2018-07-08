@@ -44,3 +44,5 @@ server.zip
 server/database/database.sqlite
 *.log
 *.js.map
+server/public/*.js
+server/public/index.html
