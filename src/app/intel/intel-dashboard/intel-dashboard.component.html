@@ -10,12 +10,12 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card class="transparent">
+<mat-card class="transparent mb-4">
     <h3 mat-subheader>Transfer Intel</h3>
     <mat-card-content>
         <p>You can transfer Intel to other players to buy back your captured operatives.</p>
 
-        <form class="example-form" (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
+        <form class="example-form" #form="ngForm" novalidate>
             <mat-form-field class="input-full-width">
                 <mat-select placeholder="Select Player" name="playerId" [(ngModel)]="model.playerId" required>
                     <mat-option *ngFor="let player of players" [value]="player.id">
@@ -25,10 +25,19 @@
             </mat-form-field>
 
             <mat-form-field class="input-full-width">
-                <input matInput="number" placeholder="Amount" value="0" name="intelValue" [(ngModel)]="model.value" required>
+                <input matInput="number" placeholder="Amount" name="value" [(ngModel)]="model.value" required>
             </mat-form-field>
 
-            <button type="submit" mat-button color="primary" [disabled]="form.invalid">TRANSFER</button>
+            <mat-form-field class="input-full-width">
+                <input matInput="text" placeholder="Message (optional)" name="message" [(ngModel)]="model.message">
+            </mat-form-field>
+
+            <button type="button" (click)="handleSubmit(form, form.valid)" mat-button color="primary" [disabled]="form.invalid">TRANSFER</button>
         </form>
     </mat-card-content>
+</mat-card>
+
+<mat-card class="transparent">
+    <h3 mat-subheader>Transfer History</h3>
+    <app-list-intel-transactions [transactions]="transactions"></app-list-intel-transactions>
 </mat-card>
