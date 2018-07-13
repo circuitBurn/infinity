@@ -1,0 +1,55 @@
+<mat-card class="transparent" *ngIf="!initialized">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</mat-card>
+
+<mat-card class="mb-4 transparent" *ngIf="initialized">
+
+    <h1 *ngIf="disabled">This game has finished.</h1>
+    <h3 mat-subheader>You Vs. {{ game.opponent }}</h3>
+    <h3 mat-subheader>{{ game.scenario.details }}</h3>
+
+    <form #gameForm="ngForm" (ngSubmit)="handleSubmit(gameForm)" novalidate>
+
+        <!-- Objectives -->
+        <mat-form-field class="input-full-width">
+            <mat-select placeholder="Game Outcome" [(ngModel)]="game.objectives" name="objectives" [disabled]="disabled" required>
+                <mat-option [value]="selection.value" *ngFor="let selection of objectives">
+                    {{ selection.description }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Sportsmanship -->
+        <mat-form-field class="input-full-width">
+            <mat-select placeholder="Sportsmanship" [(ngModel)]="game.sportsmanship" name="sportsmanship" [disabled]="disabled" required>
+                <mat-option [value]="selection.value" *ngFor="let selection of sportsmanship">
+                    {{ selection.description }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Painting -->
+        <mat-form-field class="input-full-width">
+            <mat-select placeholder="Painting" [(ngModel)]="game.painting" name="painting" [disabled]="disabled" required>
+                <mat-option [value]="selection.value" *ngFor="let selection of painting">
+                    {{ selection.description }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Mission -->
+        <mat-form-field class="input-full-width">
+            <mat-select placeholder="Mission" [(ngModel)]="game.scenario_accomplished" name="mission" [disabled]="disabled" required>
+                <mat-option [value]="true">
+                    Yes, I completed the assigned mission.
+                </mat-option>
+                <mat-option [value]="false">
+                    No, I did not complete the assigned mission.
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button class="mr-4" color="warn" type="button" (click)="handleDelete()">Delete</button>
+        <button mat-raised-button *ngIf="!disabled" color="primary" type="submit" [disabled]="gameForm.invalid || disabled">SUBMIT RESULT</button>
+    </form>
+</mat-card>

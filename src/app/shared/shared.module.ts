@@ -13,6 +13,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {MatChipsModule} from '@angular/material/chips';
         MatSnackBarModule,
         MatGridListModule,
         MatProgressBarModule,
-        MatChipsModule
+        MatChipsModule,
+        MatTableModule
     ],
     exports: [
         FormsModule,
@@ -50,7 +52,8 @@ import {MatChipsModule} from '@angular/material/chips';
         MatSnackBarModule,
         MatGridListModule,
         MatProgressBarModule,
-        MatChipsModule
+        MatChipsModule,
+        MatTableModule
     ]
 })
 export class SharedModule {}

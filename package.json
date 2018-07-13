@@ -11,7 +11,7 @@
     "dev": "npm run clean && ng build && npm run copy",
     "publish": "npm run clean && ng build --prod && npm run copy",
     "copy": "copyfiles -u 2 ./dist/infinity/*.* ./server/public",
-    "clean": "cd server/public && del *.js && del *.map && del index.html && cd ../../"
+    "clean": "cd server/public && del *.js && del *.map && del index.html && del *.css && del *.txt && cd ../../"
   },
   "private": true,
   "dependencies": {

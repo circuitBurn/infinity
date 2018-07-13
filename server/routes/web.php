@@ -39,5 +39,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('operatives/{id}', 'OperativeController@update');
 
     // TODO: Games
-
+    Route::get('games', 'GameController@retrieveAll');
+    Route::get('game/{id}', 'GameController@retrieve');
+    Route::post('game', 'GameController@create');
+    Route::post('game/{id}', 'GameController@finishGame');
+    Route::delete('game/{id}', 'GameController@destroy');
 });

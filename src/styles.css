@@ -84,6 +84,14 @@ mat-card.transparent {
   margin-bottom: 8px;
 }
 
+.mr-4 {
+    margin-right: 8px;
+}
+
+.mat-raised-button.mr-4 {
+    margin-right: 8px;
+}
+
 .agency-description {
   white-space: pre-wrap;
 }

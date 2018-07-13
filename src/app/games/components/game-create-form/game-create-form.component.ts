@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../../user.service";
 import { MatSnackBar } from "@angular/material";
 import { Observable } from "rxjs";
+import { NgForm } from "@angular/forms";
+import { GameService } from "../../game.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-game-create-form",
@@ -12,11 +15,13 @@ export class GameCreateFormComponent implements OnInit {
 
     loading: boolean = true;
     players;
-    playerId: number;
+    opponentId: number;
 
     constructor(
+        private router: Router,
         private userService: UserService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private gameService: GameService
     ) {}
 
     ngOnInit() {
@@ -33,9 +38,13 @@ export class GameCreateFormComponent implements OnInit {
         });
     }
 
-    handleSubmit(form, valid) {
-        if (valid) {
-            // console.log(form);
+    handleSubmit(form: NgForm) {
+        if (form.valid) {
+            this.gameService.create(form.value).subscribe(
+                response => {
+                    this.router.navigate([`/games/detail/${response['id']}`]);
+                }
+            )
         }
     }
 }

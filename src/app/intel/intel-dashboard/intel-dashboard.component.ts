@@ -60,7 +60,6 @@ export class IntelDashboardComponent implements OnInit {
     }
 
     handleSubmit(form: NgForm, valid: boolean) {
-        console.log(form);
         const data = {
             playerId: this.model.playerId,
             value: this.model.value,

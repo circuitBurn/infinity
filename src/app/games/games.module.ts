@@ -6,6 +6,8 @@ import { GamesComponent } from './components/games/games.component';
 import { SharedModule } from '../shared/shared.module';
 import { GameCreateFormComponent } from './components/game-create-form/game-create-form.component';
 import { GameDetailsComponent } from './components/game-details/game-details.component';
+import { GameDetailComponent } from './game-detail/game-detail.component';
+import { RulesComponent } from './components/rules/rules.component';
 
 const routes: Routes = [
     {
@@ -19,6 +21,14 @@ const routes: Routes = [
             {
                 path: 'create',
                 component: GameCreateFormComponent
+            },
+            {
+                path: 'rules',
+                component: RulesComponent
+            },
+            {
+                path: 'detail/:id',
+                component: GameDetailComponent
             },
         ]
     }
@@ -36,7 +46,7 @@ const routes: Routes = [
   declarations: [
       GameDashboardComponent, 
       GamesComponent, 
-      GameCreateFormComponent, GameDetailsComponent
+      GameCreateFormComponent, GameDetailsComponent, GameDetailComponent, RulesComponent
     ]
 })
 export class GamesModule { }

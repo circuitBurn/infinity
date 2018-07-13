@@ -1,17 +1,17 @@
 <h1 class="page-header">Start a Game</h1>
 
 <mat-card>
-    <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
+    <form (ngSubmit)="handleSubmit(form)" #form="ngForm" novalidate>
 
         <mat-form-field class="input-full-width">
-            <mat-select placeholder="Select Opponent" [(ngModel)]="playerId" name="playerId" required>
+            <mat-select placeholder="Select Opponent" [(ngModel)]="opponentId" name="opponentId" required>
                 <mat-option [value]="player.id" *ngFor="let player of players">
                     {{ player.name }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
 
-        <a mat-button type="button" [routerLink]="['/games']">Cancel</a>
-        <button mat-button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">START</button>
+        <a class="mr-4" mat-raised-button type="button" [routerLink]="['/games']">Cancel</a>
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">START</button>
     </form>
 </mat-card>
