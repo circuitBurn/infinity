@@ -33,10 +33,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('agencies', 'IntelligenceAgencyController@getAll');
     Route::get('agencies/{id}', 'IntelligenceAgencyController@get');
     Route::post('agencies/{id}', 'IntelligenceAgencyController@update');
+    Route::post('declarebankrupcy', 'IntelligenceAgencyController@declareBankrupcy');
 
     // Operatives
+    Route::get('operatives', 'OperativeController@getMyOperatives');
     Route::get('operatives/{id}', 'OperativeController@get');
     Route::post('operatives/{id}', 'OperativeController@update');
+    Route::post('operatives/{id}/giveto', 'OperativeController@giveControlTo');
+    Route::get('controlledoperatives', 'OperativeController@getControlledOperatives');
 
     // TODO: Games
     Route::get('games', 'GameController@retrieveAll');
@@ -44,4 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('game', 'GameController@create');
     Route::post('game/{id}', 'GameController@finishGame');
     Route::delete('game/{id}', 'GameController@destroy');
+
+    // Standings
+    Route::get('standings', 'GameController@getStandings');
 });

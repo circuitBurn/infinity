@@ -12,11 +12,17 @@ import { IntelligenceOperativeModule } from './intelligence-operatives/operative
 import { MainComponent } from './main/main.component';
 import { GamesModule } from './games/games.module';
 import { ProfileComponent } from './profile/profile.component';
+import { StandingsModule } from './standings/standings.module';
+import { DashboardComponent, DialogSelectPlayer } from './dashboard/dashboard.component';
 
 const routes: Routes = [
     {
         path: '',
         component: MainComponent
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent
     },
     {
         path: 'profile',
@@ -29,6 +35,8 @@ const routes: Routes = [
     AppComponent,
     MainComponent,
     ProfileComponent,
+    DashboardComponent,
+    DialogSelectPlayer
   ],
   imports: [
     ReactiveFormsModule,
@@ -41,6 +49,7 @@ const routes: Routes = [
     IntelModule,
     HttpClientModule,
     GamesModule,
+    StandingsModule,
     IntelligenceOperativeModule,
     RouterModule.forRoot(
         routes,
@@ -49,6 +58,9 @@ const routes: Routes = [
   ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogSelectPlayer
+  ]
 })
 export class AppModule { }

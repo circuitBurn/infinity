@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, OnInit } from "@angular/core";
 import { MediaMatcher } from "@angular/cdk/layout";
 import { UserService } from "./user.service";
+import { User } from "./user/user.model";
 
 @Component({
   selector: "app-root",
@@ -12,9 +13,9 @@ export class AppComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
-
   private _mobileQueryListener: () => void;
+
+  user: User;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -27,6 +28,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.userService.setUser(window['user']);
+    window["user"]["admin"] = +window["user"]["admin"];
+    this.userService.setUser(window["user"]);
+    this.user = this.userService.getUser();
+    console.log(this.user);
   }
 }

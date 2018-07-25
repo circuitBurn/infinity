@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { BehaviorSubject } from 'rxjs';
+import { Games } from './models/game.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
+
+    games$: BehaviorSubject<Games> = new BehaviorSubject<Games>({
+        active: [],
+        finished: []
+    });
 
     constructor(
         private http: HttpClient
@@ -23,7 +28,9 @@ export class GameService {
     }
 
     retrieveAll() {
-        return this.http.get('games');
+        return this.http.get<Games>('games').subscribe(games => {
+            this.games$.next(games);
+        });
     }
 
     submit(id: number, result) {

@@ -46,3 +46,4 @@ server/database/database.sqlite
 *.js.map
 server/public/*.js
 server/public/index.html
+server/.env

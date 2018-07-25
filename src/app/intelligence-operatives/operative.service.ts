@@ -17,4 +17,18 @@ export class OperativeService {
     update(operative: Operative) {
         return this.http.post(`operatives/${operative.id}`, operative);
     }
+
+    getMyOperatives() {
+        return this.http.get<Operative[]>(`operatives`);
+    }
+
+    getControlledOperatives() {
+        return this.http.get<Operative[]>(`controlledoperatives`);
+    }
+
+    giveControlTo(operativeId: number, playerId: number) {
+        return this.http.post(`operatives/${operativeId}/giveto`, {
+            playerId: playerId
+        });
+    }
 }

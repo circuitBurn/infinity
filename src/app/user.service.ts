@@ -1,44 +1,41 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
-import 'rxjs/add/operator/map';
+import "rxjs/add/operator/map";
+import { User } from "./user/user.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
+  user: User;
 
-    user;
+  constructor(private http: HttpClient) {}
 
-    constructor(
-        private http: HttpClient
-    ) {}
+  getUser() {
+    return this.user;
+  }
 
-    getUser() {
-        return this.user;
-    }
+  setUser(user: User) {
+    this.user = user;
+  }
 
-    setUser(user) {
-        this.user = user;
-    }
+  getPlayers() {
+    return this.http.get("players");
+  }
 
-    getPlayers() {
-        return this.http.get('players');
-    }
+  isAdmin() {
+    return this.user.admin;
+  }
 
-    isAdmin() {
-        return this.user.isAdmin;
-    }
+update(details) {
+    return this.http.post<User>("user", details).map(user => {
+      this.setUser(user);
+      return user;
+    });
+  }
 
-    update(details) {
-        return this.http.post("user", details).map(user => {
-            this.setUser(user);
-            return user;
-        });
-    }
-
-    updatePassword(details) {
-        return this.http.post("password", details);
-    }
-
+  updatePassword(details) {
+    return this.http.post("password", details);
+  }
 }

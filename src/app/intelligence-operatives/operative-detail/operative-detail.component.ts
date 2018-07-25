@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Operative } from "../models/operative.model";
 import { MatSnackBar } from "@angular/material";
 import { UserService } from "../../user.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-operative-detail",
@@ -15,6 +16,9 @@ export class OperativeDetailComponent implements OnInit {
   operative: Operative;
   editing: boolean = false;
   showEdit: boolean = false;
+  players;
+
+  controllingPlayer;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,10 +34,20 @@ export class OperativeDetailComponent implements OnInit {
   refresh() {
     this.route.params.subscribe(params => {
       const id = params["id"];
-      this.operativeService.getOperative(id).subscribe(operative => {
-        this.operative = operative;
-        this.loading = false;
-        this.showEdit = this.userService.getUser().id == operative['agency']['user_id'];
+
+      Observable.forkJoin(
+        this.operativeService.getOperative(id),
+        this.userService.getPlayers()
+      ).subscribe(response => {
+          console.log(response);
+          this.loading = false;
+          this.operative = response[0];
+          if (this.operative['controllingPlayer']) {
+            this.controllingPlayer = this.operative['controllingPlayer'];
+          }
+          this.players = response[1];
+          this.loading = false;
+          this.showEdit = this.userService.getUser().id == this.operative['agency']['user_id'];
       });
     });
   }

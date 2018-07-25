@@ -13,6 +13,10 @@
         </h2>
         <p class="agency-description">{{operative?.description}}</p>
 
+        <div *ngIf="controllingPlayer" class="mb-4">
+            <strong>Controlled by: {{ controllingPlayer.name }} </strong>
+        </div>
+
         <div class="mb-4">
             <strong>Stats</strong>
         </div>

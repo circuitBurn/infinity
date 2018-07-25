@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../../user.service";
-import { MatSnackBar } from "@angular/material";
 import { Observable } from "rxjs";
 import { NgForm } from "@angular/forms";
 import { GameService } from "../../game.service";
@@ -17,24 +16,19 @@ export class GameCreateFormComponent implements OnInit {
     players;
     opponentId: number;
 
+
     constructor(
         private router: Router,
         private userService: UserService,
-        private snackBar: MatSnackBar,
         private gameService: GameService
     ) {}
 
     ngOnInit() {
         Observable.forkJoin(
-            this.getPlayers()
+            this.userService.getPlayers()
         ).subscribe(response => {
             this.loading = false;
-        });
-    }
-
-    getPlayers() {
-        return this.userService.getPlayers().map(players => {
-            this.players = players;
+            this.players = response[0];
         });
     }
 

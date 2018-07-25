@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { FormsModule }   from '@angular/forms';
-import { MatToolbarModule, MatMenuModule, MatIconModule, MatProgressBarModule } from '@angular/material';
+import { MatToolbarModule, MatMenuModule, MatIconModule, MatProgressBarModule, MatDialogModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
@@ -14,6 +14,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -34,7 +35,9 @@ import {MatTableModule} from '@angular/material/table';
         MatGridListModule,
         MatProgressBarModule,
         MatChipsModule,
-        MatTableModule
+        MatTableModule,
+        MatCheckboxModule,
+        MatDialogModule
     ],
     exports: [
         FormsModule,
@@ -53,7 +56,9 @@ import {MatTableModule} from '@angular/material/table';
         MatGridListModule,
         MatProgressBarModule,
         MatChipsModule,
-        MatTableModule
+        MatTableModule,
+        MatCheckboxModule,
+        MatDialogModule
     ]
 })
 export class SharedModule {}

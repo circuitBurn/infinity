@@ -5,8 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GamesComponent } from './components/games/games.component';
 import { SharedModule } from '../shared/shared.module';
 import { GameCreateFormComponent } from './components/game-create-form/game-create-form.component';
-import { GameDetailsComponent } from './components/game-details/game-details.component';
-import { GameDetailComponent } from './game-detail/game-detail.component';
+import { GameDetailComponent } from './components/game-detail/game-detail.component';
 import { RulesComponent } from './components/rules/rules.component';
 
 const routes: Routes = [
@@ -46,7 +45,7 @@ const routes: Routes = [
   declarations: [
       GameDashboardComponent, 
       GamesComponent, 
-      GameCreateFormComponent, GameDetailsComponent, GameDetailComponent, RulesComponent
+      GameCreateFormComponent, GameDetailComponent, RulesComponent
     ]
 })
 export class GamesModule { }

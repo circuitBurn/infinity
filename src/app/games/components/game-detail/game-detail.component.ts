@@ -1,20 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { GameService } from "../game.service";
+import { GameService } from "../../game.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
-import { SnackBarService } from "../../snack-bar.service";
-
-interface GameResult {
-  opponent: string;
-  objectives: number;
-  sportsmanship: number;
-  painting: number;
-  scenario_accomplished: boolean;
-  scenario: {
-    details: string;
-    value: number;
-  };
-}
+import { SnackBarService } from "../../../snack-bar.service";
+import { Operative } from "../../../intelligence-operatives/models/operative.model";
+import { Observable } from "rxjs";
+import { OperativeService } from "../../../intelligence-operatives/operative.service";
 
 @Component({
   selector: "app-game-detail",
@@ -105,13 +96,17 @@ export class GameDetailComponent implements OnInit {
     }
   ];
 
+  operatives: Operative[];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private gameService: GameService,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private operativeService: OperativeService
   ) {
     this.initialized = false;
+    this.operatives = [];
     this.disabled = false;
     this.route.params.subscribe(params => {
       this.gameId = params["id"];
@@ -123,15 +118,22 @@ export class GameDetailComponent implements OnInit {
   }
 
   refresh() {
-    this.gameService.retrieve(this.gameId).subscribe(game => {
-      this.game = game;
-      console.log(game);
+    Observable.forkJoin(
+      this.gameService.retrieve(this.gameId),
+      this.operativeService.getMyOperatives()
+    ).subscribe(response => {
       this.initialized = true;
+      console.log(response);
+      const game = response[0];
+      this.game = response[0];
+      this.operatives = response[1];
+
       // BIG FUCKING HACK
       this.game["objectives"] = +game["objectives"];
       this.game["sportsmanship"] = +game["sportsmanship"];
       this.game["painting"] = +game["painting"];
       this.game["scenario_accomplished"] = +game["scenario_accomplished"] === 1;
+      this.game["operative_id"] = this.operatives[0].id;
       this.disabled = game["status"] === "finished";
     });
   }

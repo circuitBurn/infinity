@@ -1,11 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpResponse, HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+
 
 @Injectable()
 export class IntelligenceAgenciesService {
-
-    private agencies = [];
   
     constructor(
         private http: HttpClient
@@ -21,5 +19,9 @@ export class IntelligenceAgenciesService {
 
     update(agency) {
         return this.http.post(`agencies/${agency.id}`, agency);
+    }
+
+    declareBankrupcy() {
+        return this.http.post('declarebankrupcy', {});
     }
 }
